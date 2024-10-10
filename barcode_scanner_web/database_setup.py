@@ -5,7 +5,9 @@ def setup_database():
     c = conn.cursor()
 
     c.execute('''CREATE TABLE IF NOT EXISTS products
-                 (Id INTEGER PRIMARY KEY AUTOINCREMENT, Product TEXT, Owner TEXT, Category TEXT, Serial_no TEXT DEFAULT 'None', barcode TEXT, Tag TEXT, details TEXT, timestamp TEXT)''')
+                 (Id INTEGER PRIMARY KEY AUTOINCREMENT, Product TEXT, 
+              Owner TEXT, Category TEXT, Serial_no TEXT DEFAULT 'None', 
+              barcode TEXT, Tag TEXT, details TEXT, timestamp TEXT)''')
     
     c.execute('''CREATE TABLE IF NOT EXISTS product_movement
                  (Id INTEGER PRIMARY KEY AUTOINCREMENT,
