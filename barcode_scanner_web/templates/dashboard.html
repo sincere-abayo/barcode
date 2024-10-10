@@ -3,36 +3,32 @@
    {% extends "base.html" %}
    {% block content %}
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
-
-            <div class="bg-black px-2 py-5 rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
-                <div class="text-center relative">
-                    <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-cubes-stacked"></i> Total Products</h2>
-                    <p class="text-3xl font-bold text-yellow-600">100</p>
-                    <i class="fa-solid fa-cubes-stacked text-zinc-950 text-6xl absolute bottom-0 right-0"></i>
-                </div>
-              
-            </div>
-
-            <div class="bg-black px-2 py-5 rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
-                <div class="text-center relative">
-                    <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-user-graduate"></i>  Registered students</h2>
-                    <p class="text-3xl font-bold text-yellow-600">1750</p>
-                    <i class="fa-solid fa-user-graduate text-zinc-950 text-6xl absolute bottom-0 right-0"></i>
-                </div>
-               
-            </div>
-
-            <div class="bg-black px-2 py-5 rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
-                <div class="text-center relative">
-                    <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa fa-users"></i> Total Users</h2>
-                    <p class="text-3xl font-bold text-yellow-600">100</p>
-                    <i class="fa fa-users text-zinc-950 text-6xl absolute bottom-0 right-0"></i>
-                </div>
-             
-            </div>
-
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+    <div class="bg-black px-2 py-5 rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+        <div class="text-center relative">
+            <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-cubes-stacked"></i> Total Products</h2>
+            <p class="text-3xl font-bold text-yellow-600">{{ total_products }}</p>
+            <i class="fa-solid fa-cubes-stacked text-zinc-950 text-6xl absolute bottom-0 right-0"></i>
         </div>
+    </div>
+
+    <div class="bg-black px-2 py-5 rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+        <div class="text-center relative">
+            <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-user-graduate"></i>  Registered students</h2>
+            <p class="text-3xl font-bold text-yellow-600">{{ total_students }}</p>
+            <i class="fa-solid fa-user-graduate text-zinc-950 text-6xl absolute bottom-0 right-0"></i>
+        </div>
+    </div>
+
+    <div class="bg-black px-2 py-5 rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+        <div class="text-center relative">
+            <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa fa-users"></i> Total Users</h2>
+            <p class="text-3xl font-bold text-yellow-600">{{ total_users }}</p>
+            <i class="fa fa-users text-zinc-950 text-6xl absolute bottom-0 right-0"></i>
+        </div>
+    </div>
+</div>
+
         
 
         <div class="flex flex-col md:flex-row space-x-4">
@@ -40,43 +36,34 @@
                 <h2 class="text-xl text-zinc-600 font-semibold mb-2">Recent Activities</h2>
 
                 <div class="overflow-x-auto">
+                  {% if recent_movements %}
                 <table class="w-full text-white">
                     <thead>
                         <tr>
                             <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">#ID</th>
                             <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">Product Name <i class="fa-solid fa-sort"></i> </th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">Barcode</th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">Time Get Out</th>
+                           
                             <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">Owner</th>
+                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">Status</th>
+                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3">Time</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr class="border-b border-zinc-700 hover:bg-zinc-900 cursor-pointer">
-                            <td class="px-4 text-zinc-500 text-lg py-2">1</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">Product A</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">987654321</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">2023-05-02 09:15:00</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">Jane Smith</td>
-                        </tr>
-
-                        <tr class="border-b border-zinc-700 hover:bg-zinc-900 cursor-pointer" >
-                            <td class="px-4 text-zinc-500 text-lg py-2">2</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">Product B</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">123456789</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">2023-05-01 14:30:00</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">Imanishimwe Noel</td>
-                        </tr>
-                        <tr class="border-b border-zinc-700 hover:bg-zinc-900 cursor-pointer">
-                            <td class="px-4 text-zinc-500 text-lg py-2">3</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">Product C</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">987654321</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">2023-05-02 09:15:00</td>
-                            <td class="px-4 text-zinc-500 text-lg py-2">Jane Smith</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                    </tbody>
+                      {% for movement in recent_movements %}
+                      <tr class="border-b border-zinc-700 hover:bg-zinc-900 cursor-pointer">
+                          <td class="px-4 text-zinc-500 text-lg py-2">{{ movement.Id }}</td>
+                          <td class="px-4 text-zinc-500 text-lg py-2">{{ movement.Product }}</td>
+                          <td class="px-4 text-zinc-500 text-lg py-2">{{ movement.Owner }}</td>
+                          <td class="px-4 text-zinc-500 text-lg py-2">{{ movement.status }}</td>
+                          <td class="px-4 text-zinc-500 text-lg py-2">{{ movement.Timestamp }}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+  
                 </table>
+                {% else %}
+        <p class="text-zinc-500 text-lg py-2">No recent movements to display.</p>
+    {% endif %}
             </div>
             </div>
                       <div class="w-full md:w-1/5 p-3 bg-black rounded">
