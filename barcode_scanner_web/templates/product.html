@@ -5,10 +5,7 @@
             <div class="text-end mb-4">
                  <button class="text-white bg-yellow-600 px-5 py-1 rounded" id="openModalBtn">  <i class="fa fa-circle-plus"></i> Add new product</button> 
             </div>
-            <div class="mb-4 flex">
-                <input type="text" id="searchInput" placeholder="Search products..." class="w-64 p-2 bg-zinc-800 text-white rounded-l">
-                <button id="searchButton" class="bg-yellow-600 text-white px-3 py-2 rounded-r"><i class="fa fa-search"></i></button>
-            </div>
+            
             <div class="overflow-x-auto">
                 <table class="w-full text-white">
                     <thead>
@@ -55,12 +52,18 @@
               </div>
 
               <div class="my-2">
-                  <label for="productType" class="block mb-3 text-xl text-white font-medium">Product Type</label>
+                  <label for="productType" class="block mb-3 text-xl text-white font-medium">Categories</label>
                   <div class="relative">
                       <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                           <i class="fas fa-tags text-gray-200"></i>
                       </span>
-                      <input id="productType" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="productType" placeholder="Product Type" required>
+                      <select id="productType" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" name="productType" required>
+                          <option value="" disabled selected>Select a category</option>
+                          <option value="Furniture">Furniture</option>
+                          <option value="Electronic Device">Electronic Device</option>
+                          <option value="Spare Part">Spare Part</option>
+                          <option value="Others">Others</option>
+                      </select>
                   </div>
               </div>
 
@@ -95,7 +98,7 @@
               </div>
 
               <div class="my-2">
-                  <label for="description" class="block mb-3 text-xl text-white font-medium">Description</label>
+                  <label for="description" class="block mb-3 text-xl text-white font-medium">Details</label>
                   <div class="relative">
                       <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                           <i class="fas fa-file-alt text-gray-200"></i>
@@ -103,16 +106,15 @@
                       <textarea id="description" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" name="description" placeholder="Description" required></textarea>
                   </div>
               </div>
-
-              <div class="my-2">
-                  <label for="phoneNumber" class="block mb-3 text-xl text-white font-medium">Phone Number</label>
-                  <div class="relative">
-                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                          <i class="fas fa-phone text-gray-200"></i>
-                      </span>
-                      <input id="phoneNumber" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="tel" name="phoneNumber" placeholder="Phone Number" required>
-                  </div>
-              </div>
+                <div class="my-2">
+                    <label for="serialNumber" class="block mb-3 text-xl text-white font-medium">Serial Number</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-microchip text-gray-200"></i>
+                        </span>
+                        <input id="serialNumber" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="serialNumber" placeholder="Serial Number" required>
+                    </div>
+                </div>
 
               <!-- Add other form fields as needed -->
 
