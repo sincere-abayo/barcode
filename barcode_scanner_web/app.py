@@ -1,23 +1,30 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from pyzbar.pyzbar import decode
+from werkzeug.security import check_password_hash
+import sqlite3
+import sys
 from PIL import Image
 import io
 import sqlite3
 from datetime import datetime
 
 app = Flask(__name__)
+app.secret_key = 'abcdefghigk'  # Set a secret key for session management
+
 
 def get_db_connection():
     conn = sqlite3.connect('barcodes.db')
     conn.row_factory = sqlite3.Row
     return conn
 
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
+# @app.route('/', methods=['GET'])
+# def index():
+#     return render_template('index.html')
 
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
+    if 'user_id' not in session:
+        return redirect(url_for('index'))
     return render_template('dashboard.html')
 
 
@@ -90,6 +97,32 @@ def get_all():
     conn.close()
 
     return jsonify([dict(row) for row in results])
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE Email = ?', (email,)).fetchone()
+        conn.close()
+
+        if user and (user['Password'], password):
+            session['user_id'] = user['Email']
+            return redirect(url_for('dashboard'))
+        else:
+            return render_template('index.html', error='Invalid email or password')
+    
+    return render_template('index.html')
+
+
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
