@@ -21,11 +21,42 @@ def get_db_connection():
 # def index():
 #     return render_template('index.html')
 
-@app.route('/dashboard', methods=['GET'])
+
+@app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('index'))
-    return render_template('dashboard.html')
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Get total products
+    cursor.execute("SELECT COUNT(*) FROM products")
+    total_products = cursor.fetchone()[0]
+
+    # Get total registered students
+    cursor.execute("SELECT COUNT(*) FROM students")
+    total_students = cursor.fetchone()[0]
+
+    # Get total users
+    cursor.execute("SELECT COUNT(*) FROM users")
+    total_users = cursor.fetchone()[0]
+     # Fetch the latest 10 movements
+    cursor.execute("""
+        SELECT pm.Id, p.Product, p.Owner, pm.status, pm.Timestamp
+        FROM product_movement pm
+        JOIN products p ON pm.ProductId = p.Id
+        ORDER BY pm.Timestamp DESC
+        LIMIT 10
+    """)
+    recent_movements = cursor.fetchall()
+
+
+    conn.close()
+
+    return render_template('dashboard.html', total_products=total_products, 
+                           total_students=total_students, total_users=total_users,  recent_movements=recent_movements)
+
 
 
 
