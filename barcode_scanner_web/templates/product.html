@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 {% block content %}
             <div class="text-end mb-4">
-                 <a href="Registerproduct.html"> <button class="text-white bg-yellow-600 px-5 py-1 rounded">  <i class="fa fa-circle-plus"></i> Add new product</button> </a>
+                 <button class="text-white bg-yellow-600 px-5 py-1 rounded" id="openModalBtn">  <i class="fa fa-circle-plus"></i> Add new product</button> 
             </div>
             <div class="mb-4 flex">
                 <input type="text" id="searchInput" placeholder="Search products..." class="w-64 p-2 bg-zinc-800 text-white rounded-l">
@@ -35,7 +35,95 @@
             </div>
         </div>
 
+        <!-- Modal Structure -->
+        <div id="productModal" class="fixed inset-0 hidden bg-gray-800 bg-opacity-50 flex items-center justify-center">
+          <div class="bg-black p-8 rounded-lg md:w-1/2 w-full m-5">
+            <h2 class="text-2xl mb-4">Add Product</h2>
+      
+            <form id="productForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+   
+              <div class="my-2">
+                  <label for="productName" class="block mb-3 text-xl text-white font-medium">Product Name</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-box text-gray-200"></i>
+                      </span>
+                      <input id="productName" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="productName" placeholder="Product Name" required>
+                  </div>
+              </div>
 
+              <div class="my-2">
+                  <label for="productType" class="block mb-3 text-xl text-white font-medium">Product Type</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-tags text-gray-200"></i>
+                      </span>
+                      <input id="productType" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="productType" placeholder="Product Type" required>
+                  </div>
+              </div>
+
+              <div class="my-2">
+                  <label for="owner" class="block mb-3 text-xl text-white font-medium">Owner</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-user text-gray-200"></i>
+                      </span>
+                      <input id="owner" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="owner" placeholder="Owner" required>
+                  </div>
+              </div>
+
+              <div class="my-2">
+                  <label for="barcode" class="block mb-3 text-xl text-white font-medium">Barcode</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-barcode text-gray-200"></i>
+                      </span>
+                      <input id="barcode" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="barcode" placeholder="Barcode" required>
+                  </div>
+              </div>
+
+              <div class="my-2">
+                  <label for="rfid" class="block mb-3 text-xl text-white font-medium">RFID</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-microchip text-gray-200"></i>
+                      </span>
+                      <input id="rfid" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="text" name="rfid" placeholder="RFID" required>
+                  </div>
+              </div>
+
+              <div class="my-2">
+                  <label for="description" class="block mb-3 text-xl text-white font-medium">Description</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-file-alt text-gray-200"></i>
+                      </span>
+                      <textarea id="description" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" name="description" placeholder="Description" required></textarea>
+                  </div>
+              </div>
+
+              <div class="my-2">
+                  <label for="phoneNumber" class="block mb-3 text-xl text-white font-medium">Phone Number</label>
+                  <div class="relative">
+                      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <i class="fas fa-phone text-gray-200"></i>
+                      </span>
+                      <input id="phoneNumber" class="border rounded-md focus:outline-none w-full py-2 pl-10 bg-black text-white pr-5 border-yellow-600" type="tel" name="phoneNumber" placeholder="Phone Number" required>
+                  </div>
+              </div>
+
+              <!-- Add other form fields as needed -->
+
+              <div class="col-span-2 flex flex-col sm:flex-row justify-between mt-6">
+                <button type="button" id="closeModalBtn" class="bg-zinc-600 text-white px-10 py-2 rounded mb-2 sm:mb-0">Cancel</button>
+                <button type="submit" class="bg-yellow-600 text-white px-10 py-2 rounded">Save Product</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+  <script src="static/Js/modal.js"></script>
   <script>
     const menuBtn = document.getElementById('menu-btn');
     const sidebar = document.getElementById('sidebar');
