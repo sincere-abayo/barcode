@@ -83,9 +83,20 @@ def register_product():
 
 
 
+# report file
 @app.route('/report', methods=['GET'])
 def report():
     return render_template('report.html')
+
+# users file
+@app.route('/users', methods=['GET'])
+def users():
+    return render_template('users.html')
+
+# student file
+@app.route('/student', methods=['GET'])
+def student():
+    return render_template('student.html')
 
 @app.route('/product', methods=['GET'])
 def product():
