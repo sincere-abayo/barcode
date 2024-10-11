@@ -13,6 +13,13 @@ closeModalBtn.addEventListener('click', () => {
   productModal.classList.add('hidden');
 });
 
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+  if (event.target === productModal) {
+    productModal.classList.add('hidden');
+  }
+});
+
 // // Handle form submission (optional)
 // document.getElementById('productForm').addEventListener('submit', (event) => {
 //   event.preventDefault();

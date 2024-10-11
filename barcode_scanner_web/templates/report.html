@@ -1,163 +1,157 @@
+{% extends "base.html" %}
+{% block content %}
 
-
-   
-   {% extends "base.html" %}
-   {% block content %}
-
-
-        <div class="flex flex-col md:flex-row space-x-4">
-            <div class="w-full p-5 mb-4 md:mb-0 bg-black rounded-md">
-                <h2 class="text-xl text-zinc-600 font-semibold mb-2">Recent Activities</h2>
-
-               <div class="mb-4 flex">
-                  <input type="text" id="searchInput" placeholder="Search products..." class="w-64 p-2 bg-zinc-800 text-white rounded-l">
-                  <button id="searchButton" class="bg-yellow-600 text-white px-3 py-2 rounded-r"><i class="fa fa-search"></i></button>
-              </div>
-
-                <div class="overflow-x-auto">
-                <table id="productTable" class="w-full text-white">
-                    <thead>
-                        <tr>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer">#ID <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer">Product Name <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer">Barcode <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer">Time Get In <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer">Time Get Out <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer">Owner <i class="fa-solid fa-sort"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- Table rows will be dynamically added here -->
-                    </tbody>
-                </table>
+<div class="rounded">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-black rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+            <div class="text-center relative px-3 py-5">
+                <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-cubes-stacked"></i> Entry Products</h2>
+                <p class="text-3xl font-bold text-yellow-600">125</p>
+                <i class="fa-solid fa-cubes-stacked text-zinc-950 text-6xl absolute bottom-0 top-1 right-0"></i>
             </div>
-
-            <div class="mt-4 flex justify-between items-center">
-                <div>
-                    <span class="text-zinc-500">Showing <span id="startIndex">1</span> to <span id="endIndex">10</span> of <span id="totalItems">25</span> entries</span>
-                </div>
-                <div>
-                    <button id="prevBtn" class="bg-zinc-800 text-white px-4 py-2 rounded mr-2">< Previous</button>
-                    <button id="nextBtn" class="bg-zinc-800 text-white px-4 py-2 rounded">Next ></button>
-                </div>
-            </div>
-
-            </div>
+            <a href="#" class="w-full bg-yellow-600 p-1 font-medium rounded-b-sm hover:bg-yellow-700 block text-center view-all" data-target="product-entry-table">
+                View all <i class="fa fa-eye"></i>
+            </a>
         </div>
-    
 
-    <script>
-      const menuBtn = document.getElementById('menu-btn');
-      const sidebar = document.getElementById('sidebar');
+        <div class="bg-black rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+            <div class="text-center relative px-3 py-5">
+                <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-cubes-stacked"></i> Exit Products</h2>
+                <p class="text-3xl font-bold text-yellow-600">234</p>
+                <i class="fa-solid fa-cubes-stacked text-zinc-950 text-6xl absolute bottom-0 top-1 right-0"></i>
+            </div>
+            <a href="#" class="w-full bg-yellow-600 p-1 font-medium rounded-b-sm hover:bg-yellow-700 block text-center view-all" data-target="product-exit-table">
+                View all <i class="fa fa-eye"></i>
+            </a>
+        </div>
 
-      menuBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('sidebar-open');
-      });
+        <div class="bg-black rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+            <div class="text-center relative px-3 py-5">
+                <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-user-graduate"></i> Entry Students</h2>
+                <p class="text-3xl font-bold text-yellow-600">78</p>
+                <i class="fa-solid fa-user-graduate text-zinc-950 text-5xl absolute bottom-0 top-1 right-0"></i>
+            </div>
+            <a href="#" class="w-full bg-yellow-600 p-1 font-medium rounded-b-sm hover:bg-yellow-700 block text-center view-all" data-target="student-entry-table">
+                View all <i class="fa fa-eye"></i>
+            </a>
+        </div>
 
-      // Close sidebar when clicking outside of it
-      document.addEventListener('click', (event) => {
-        const isClickInsideMenu = menuBtn.contains(event.target);
-        const isClickInsideSidebar = sidebar.contains(event.target);
+        <div class="bg-black rounded-md shadow-sm shadow-zinc-900 border-l-4 border-yellow-600">
+            <div class="text-center relative px-3 py-5">
+                <h2 class="text-xl text-white font-semibold mb-2"> <i class="fa-solid fa-user-graduate"></i> Exit Students</h2>
+                <p class="text-3xl font-bold text-yellow-600">15000</p>
+                <i class="fa-solid fa-user-graduate text-zinc-950 text-5xl absolute bottom-0 top-1 right-0"></i>
+            </div>
+            <a href="#" class="w-full bg-yellow-600 p-1 font-medium rounded-b-sm hover:bg-yellow-700 block text-center view-all" data-target="student-exit-table">
+                View all <i class="fa fa-eye"></i>
+            </a>
+        </div>
+    </div>
+</div>
 
-        if (!isClickInsideMenu && !isClickInsideSidebar && sidebar.classList.contains('sidebar-open')) {
-          sidebar.classList.remove('sidebar-open');
-        }
-      });
+<div class="bg-black mt-6 p-5 rounded mb-10">
+    <div class="overflow-x-auto">
+        <table id="student-entry-table" class="w-full text-white hidden">
+            <caption class="text-white">Student Entry</caption>
+            <thead>
+                <tr>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="id">#ID <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="name">Names <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="category">Reg No <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="serial"> Department <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="details"> Program <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="owner">Gender <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="timeGetOut">Year of Study <i class="fa-solid fa-sort"></i></th>
+                </tr>
+            </thead>
+            <tbody id="tableRow">
+                <tr>
+                    <td class="border-b border-zinc-700 px-4 py-3">1</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">John Doe</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">REG001</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Computer Science</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Bachelor of Science</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Male</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">2</td>
+                </tr>
+                <tr>
+                    <td class="border-b border-zinc-700 px-4 py-3">2</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Jane Smith</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">REG002</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Engineering</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Bachelor of Engineering</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Female</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">3</td>
+                </tr>
+            </tbody>
+        </table>
 
-      // Sample data (replace with your actual data)
-      const data = [
-        { id: 1, name: "Product A", barcode: "123456", timeIn: "2023-05-01 09:00", timeOut: "2023-05-01 17:00", owner: "John Doe" },
-        { id: 2, name: "Product B", barcode: "234567", timeIn: "2023-05-02 10:00", timeOut: "2023-05-02 18:00", owner: "Jane Smith" },
-        // Add more sample data here
-      ];
+        <table id="product-entry-table" class="w-full text-white mt-5 hidden">
+            <caption class="text-white">Product Entry</caption>
+            <thead>
+                <tr>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="id">#ID <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="name">Product Name <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="category">category <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="serial">Serial Number <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="details">Details <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="owner">Owner <i class="fa-solid fa-sort"></i></th>
+                    <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="timeGetOut">Registered <i class="fa-solid fa-sort"></i></th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                <tr>
+                    <td class="border-b border-zinc-700 px-4 py-3">1</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Laptop</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Electronics</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">LPT001</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">15-inch, 8GB RAM</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">John Doe</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">2023-05-15</td>
+                </tr>
+                <tr>
+                    <td class="border-b border-zinc-700 px-4 py-3">2</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Smartphone</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Electronics</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">SPH002</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">6.2-inch, 128GB</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Jane Smith</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">2023-05-16</td>
+                </tr>
+                <tr>
+                    <td class="border-b border-zinc-700 px-4 py-3">3</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Desk Chair</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Furniture</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">DCH003</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Ergonomic, Black</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">Mike Johnson</td>
+                    <td class="border-b border-zinc-700 px-4 py-3">2023-05-17</td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+</div>
 
-      let currentPage = 1;
-      const itemsPerPage = 10;
-      let filteredData = [...data];
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const viewAllButtons = document.querySelectorAll('.view-all');
+    const tables = document.querySelectorAll('table');
 
-      function renderTable() {
-        const tableBody = document.getElementById('tableBody');
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const pageData = filteredData.slice(startIndex, endIndex);
-
-        tableBody.innerHTML = '';
-        pageData.forEach(item => {
-          const row = `
-            <tr class="border-b border-zinc-700 hover:bg-zinc-900 cursor-pointer">
-              <td class="px-4 text-zinc-500 text-lg py-2">${item.id}</td>
-              <td class="px-4 text-zinc-500 text-lg py-2">${item.name}</td>
-              <td class="px-4 text-zinc-500 text-lg py-2">${item.barcode}</td>
-              <td class="px-4 text-zinc-500 text-lg py-2">${item.timeIn}</td>
-              <td class="px-4 text-zinc-500 text-lg py-2">${item.timeOut}</td>
-              <td class="px-4 text-zinc-500 text-lg py-2">${item.owner}</td>
-            </tr>
-          `;
-          tableBody.innerHTML += row;
+    viewAllButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetTableId = this.getAttribute('data-target');
+            const targetTable = document.getElementById(targetTableId);
+            
+            if (targetTable.classList.contains('hidden')) {
+                tables.forEach(table => table.classList.add('hidden'));
+                targetTable.classList.remove('hidden');
+            } else {
+                targetTable.classList.add('hidden');
+            }
         });
-
-        updatePagination();
-      }
-
-      function updatePagination() {
-        const startIndex = document.getElementById('startIndex');
-        const endIndex = document.getElementById('endIndex');
-        const totalItems = document.getElementById('totalItems');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        const start = (currentPage - 1) * itemsPerPage + 1;
-        const end = Math.min(currentPage * itemsPerPage, filteredData.length);
-
-        startIndex.textContent = start;
-        endIndex.textContent = end;
-        totalItems.textContent = filteredData.length;
-
-        prevBtn.disabled = currentPage === 1;
-        nextBtn.disabled = end >= filteredData.length;
-      }
-
-      document.getElementById('prevBtn').addEventListener('click', () => {
-        if (currentPage > 1) {
-          currentPage--;
-          renderTable();
-        }
-      });
-
-      document.getElementById('nextBtn').addEventListener('click', () => {
-        if (currentPage * itemsPerPage < filteredData.length) {
-          currentPage++;
-          renderTable();
-        }
-      });
-
-      // Search functionality
-      document.getElementById('search').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        filteredData = data.filter(item => 
-          item.name.toLowerCase().includes(searchTerm) ||
-          item.barcode.toLowerCase().includes(searchTerm) ||
-          item.owner.toLowerCase().includes(searchTerm)
-        );
-        currentPage = 1;
-        renderTable();
-      });
-
-      // Sorting functionality
-      document.querySelectorAll('th').forEach(header => {
-        header.addEventListener('click', () => {
-          const column = header.textContent.trim().split(' ')[0].toLowerCase();
-          filteredData.sort((a, b) => {
-            if (a[column] < b[column]) return -1;
-            if (a[column] > b[column]) return 1;
-            return 0;
-          });
-          renderTable();
-        });
-      });
-
-      // Initial render
-      renderTable();
-    </script>
+    });
+});
+</script>
 
 {% endblock %}
