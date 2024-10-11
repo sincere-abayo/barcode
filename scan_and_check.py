@@ -1,20 +1,28 @@
 import sys
 import msvcrt
 import sqlite3
+from datetime import datetime
 
 def getch():
     return msvcrt.getch().decode()
 
 def check_barcode(conn, barcode):
     c = conn.cursor()
-    c.execute("SELECT * FROM scans WHERE barcode = ?", (barcode,))
+    c.execute("SELECT * FROM products WHERE barcode = ?", (barcode,))
     result = c.fetchone()
     if result:
-        return f"Barcode: {result[0]}\nName: {result[1]}\nDetails: {result[2]}\nTimestamp: {result[3]}"
+        product_id, product, owner, category, serial_no, barcode, tag, details, timestamp = result
+        current_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        c.execute("INSERT INTO product_movement (ProductId, status, Timestamp) VALUES (?, ?, ?)",
+                  (product_id, 'exit', current_timestamp))
+        conn.commit()
+        return f"Product: {product}\nOwner: {owner}\nCategory: {category}\nBarcode: {barcode}\nExit Time: {current_timestamp}"
     else:
-        return "Error: Barcode not found in the database."
+        return "Product not found"
 
-conn = sqlite3.connect('barcodes.db')
+
+
+conn = sqlite3.connect('barcode_scanner_web/barcodes.db')
 print("Scan a barcode to check (press 'q' to quit):")
 
 barcode = ""

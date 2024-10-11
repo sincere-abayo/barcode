@@ -58,6 +58,29 @@ def dashboard():
                            total_students=total_students, total_users=total_users,  recent_movements=recent_movements)
 
 
+from datetime import datetime
+
+@app.route('/register_product', methods=['POST'])
+def register_product():
+    data = request.form
+    product = data.get('productName')
+    owner = data.get('owner')
+    category = data.get('productType')
+    serial_no = data.get('serialNumber')
+    barcode = data.get('barcode')
+    tag = data.get('rfid')  # RFID as Tag
+    details = data.get('description')
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("INSERT INTO products (Product, Owner, Category, Serial_no, barcode, Tag, details, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+              (product, owner, category, serial_no, barcode, tag, details, timestamp))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'message': 'Product registered successfully'})
+
 
 
 @app.route('/report', methods=['GET'])
@@ -67,6 +90,17 @@ def report():
 @app.route('/product', methods=['GET'])
 def product():
     return render_template('product.html')
+
+@app.route('/all_products', methods=['GET'])
+def get_all_products():
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("SELECT * FROM products")
+    products = c.fetchall()
+    conn.close()
+
+    return jsonify([dict(row) for row in products])
+
 
 @app.route('/scan', methods=['POST'])
 def scan():

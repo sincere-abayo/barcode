@@ -13,19 +13,19 @@ closeModalBtn.addEventListener('click', () => {
   productModal.classList.add('hidden');
 });
 
-// Handle form submission (optional)
-document.getElementById('productForm').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const productName = document.getElementById('productName').value;
-  const productType = document.getElementById('productType').value;
-  const productOwner = document.getElementById('productOwner').value;
+// // Handle form submission (optional)
+// document.getElementById('productForm').addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   const productName = document.getElementById('productName').value;
+//   const productType = document.getElementById('productType').value;
+//   const productOwner = document.getElementById('productOwner').value;
 
-  console.log('Product Name:', productName);
-  console.log('Product Type:', productType);
-  console.log('Product Owner:', productOwner);
+//   console.log('Product Name:', productName);
+//   console.log('Product Type:', productType);
+//   console.log('Product Owner:', productOwner);
 
-  // You can add additional logic here to handle the form data, such as sending it to a server
+//   // You can add additional logic here to handle the form data, such as sending it to a server
 
-  // Close modal after submission
-  productModal.classList.add('hidden');
-});
+//   // Close modal after submission
+//   productModal.classList.add('hidden');
+// });

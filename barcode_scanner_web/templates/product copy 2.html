@@ -16,11 +16,9 @@
                         <tr>
                             <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="id">#ID <i class="fa-solid fa-sort"></i></th>
                             <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="name">Product Name <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="category">category <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="serial">Serial Number <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="details">Details <i class="fa-solid fa-sort"></i></th>
-                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="owner">Owner <i class="fa-solid fa-sort"></i></th>
+                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="barcode">Barcode <i class="fa-solid fa-sort"></i></th>
                             <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="timeGetOut">Registered <i class="fa-solid fa-sort"></i></th>
+                            <th class="border-b border-zinc-700 px-4 text-zinc-400 py-3 cursor-pointer" data-sort="owner">Owner <i class="fa-solid fa-sort"></i></th>
                         </tr>
                     </thead>
                     <tbody id="productTableBody">
@@ -202,11 +200,9 @@ function fetchProducts() {
           <tr class="border-b border-zinc-700 hover:bg-zinc-900 cursor-pointer">
             <td class="px-4 text-zinc-500 text-lg py-2">${product.Id}</td>
             <td class="px-4 text-zinc-500 text-lg py-2">${product.Product}</td>
-            <td class="px-4 text-zinc-500 text-lg py-2">${product.Category}</td>
-            <td class="px-4 text-zinc-500 text-lg py-2">${product.Serial_no}</td>
-            <td class="px-4 text-zinc-500 text-lg py-2">${product.details}</td>
-            <td class="px-4 text-zinc-500 text-lg py-2">${product.Owner}</td>
+            <td class="px-4 text-zinc-500 text-lg py-2">${product.barcode}</td>
             <td class="px-4 text-zinc-500 text-lg py-2">${product.timestamp}</td>
+            <td class="px-4 text-zinc-500 text-lg py-2">${product.Owner}</td>
           </tr>
         `;
         productTableBody.innerHTML += row;
@@ -285,7 +281,7 @@ function fetchProducts() {
 
     // register product
 
-    document.getElementById('productFormId').addEventListener('submit', function(e) {
+    document.getElementById('Id').addEventListener('submit', function(e) {
     e.preventDefault();
     
     let formData = new FormData(this);
