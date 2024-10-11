@@ -22,7 +22,7 @@ def check_barcode(conn, barcode):
 
 
 
-conn = sqlite3.connect('barcodes.db')
+conn = sqlite3.connect('barcodes1.db')
 print("Scan a barcode to check (press 'q' to quit):")
 
 barcode = ""

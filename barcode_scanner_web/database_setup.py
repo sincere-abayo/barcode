@@ -1,7 +1,7 @@
 import sqlite3
 
 def setup_database():
-    conn = sqlite3.connect('barcodes.db')
+    conn = sqlite3.connect('barcodes1.db')
     c = conn.cursor()
 
     c.execute('''CREATE TABLE IF NOT EXISTS products

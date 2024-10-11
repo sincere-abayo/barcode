@@ -13,7 +13,7 @@ app.secret_key = 'abcdefghigk'  # Set a secret key for session management
 
 
 def get_db_connection():
-    conn = sqlite3.connect('barcodes.db')
+    conn = sqlite3.connect('barcodes1.db')
     conn.row_factory = sqlite3.Row
     return conn
 
